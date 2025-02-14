@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
+import Button from "../../ui/Button";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -57,12 +58,7 @@ function CreateOrder() {
         <div>
           <label>Phone number</label>
           <div>
-            <input
-              type="tel"
-              name="phone"
-              required
-              className="w-full rounded-full border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring focus:ring-yellow-400 md:px-6"
-            />
+            <input type="tel" name="phone" required className="input" />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -70,12 +66,7 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input
-              type="text"
-              name="address"
-              required
-              className="w-full rounded-full border-stone-200 px-4 py-2 text-sm transition-all duration-300 placeholder:text-stone-400 focus:ring focus:ring-yellow-400 md:px-6"
-            />
+            <input type="text" name="address" required className="input" />
           </div>
         </div>
 
@@ -93,12 +84,9 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button
-            disabled={isSubmitting}
-            className="inline-block rounded-full bg-yellow-400 px-4 py-3 font-semibold tracking-wide text-stone-800 uppercase transition-colors duration-300 hover:cursor-pointer hover:bg-yellow-300 focus:ring focus:ring-yellow-300 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed"
-          >
+          <Button disabled={isSubmitting}>
             {isSubmitting ? "Placing Order..." : "Order now"}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
