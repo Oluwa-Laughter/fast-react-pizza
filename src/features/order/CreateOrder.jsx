@@ -3,6 +3,7 @@ import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
 import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
+import { getCart } from "../cart/cartSlice";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -45,7 +46,7 @@ function CreateOrder() {
 
   // const [withPriority, setWithPriority] = useState(false);
 
-  const cart = fakeCart;
+  const cart = useSelector(getCart());
 
   return (
     <div className="px-4 py-3">
@@ -138,3 +139,24 @@ export async function action({ request }) {
 }
 
 export default CreateOrder;
+
+
+
+// import { formatCurrency } from "../../utils/helpers";
+
+// function OrderItem({ item, isLoadingIngredients, ingredients }) {
+//   const { quantity, name, totalPrice } = item;
+
+//   return (
+//     <li className="py-3">
+//       <div className="flex items-center justify-between gap-4 text-sm">
+//         <p>
+//           <span className="font-bold">{quantity}&times;</span> {name}
+//         </p>
+//         <p className="font-bold">{formatCurrency(totalPrice)}</p>
+//       </div>
+//     </li>
+//   );
+// }
+
+// export OrderItem;
